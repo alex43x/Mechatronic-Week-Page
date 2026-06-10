@@ -12,7 +12,9 @@ const talks = [
 
 export default function Talks() {
   const sectionRef = useRef(null);
+  const timelineRef = useRef(null);
   const [visible, setVisible] = useState(false);
+  const [fillHeight, setFillHeight] = useState(0);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -24,6 +26,29 @@ export default function Talks() {
     return () => obs.disconnect();
   }, []);
 
+  useEffect(() => {
+    const onScroll = () => {
+      const timeline = timelineRef.current;
+      if (!timeline) return;
+      const rect = timeline.getBoundingClientRect();
+      const windowH = window.innerHeight;
+      const totalH = timeline.offsetHeight;
+
+      if (rect.top > windowH) {
+        setFillHeight(0);
+      } else if (rect.bottom < 0) {
+        setFillHeight(100);
+      } else {
+        const scrolled = windowH - rect.top;
+        const pct = Math.min(Math.max((scrolled / (totalH + windowH * 0.3)) * 100, 0), 100);
+        setFillHeight(pct);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <section id="charlas" className={`section talks${visible ? ' talks--visible' : ''}`} ref={sectionRef}>
       <div className="container">
@@ -32,12 +57,16 @@ export default function Talks() {
           Cronograma de charlas y presentación de proyectos
         </p>
 
-        <div className="talks__timeline">
+        <div className="talks__timeline" ref={timelineRef}>
           <div className="talks__line" />
+          <div
+            className="talks__line-fill"
+            style={{ height: `${fillHeight}%` }}
+          />
           {talks.map((t, i) => (
             <div
               key={i}
-              className={`talks__item${t.break ? ' talks__item--break' : ''}`}
+              className={`talks__item${t.break ? ' talks__item--break' : ''}${i === 0 ? ' talks__item--next' : ''}`}
               style={{ animationDelay: `${i * 0.1}s` }}
             >
               <div className="talks__dot">

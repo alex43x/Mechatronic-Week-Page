@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const TARGET = new Date('2026-08-04T23:59:59');
 
@@ -11,6 +11,39 @@ function calc() {
     minutes: Math.floor((diff / 60000) % 60),
     seconds: Math.floor((diff / 1000) % 60),
   };
+}
+
+function FlipDigit({ value, label }) {
+  const [display, setDisplay] = useState(String(value).padStart(2, '0'));
+  const [flipping, setFlipping] = useState(false);
+  const prevRef = useRef(value);
+
+  useEffect(() => {
+    const newVal = String(value).padStart(2, '0');
+    if (prevRef.current !== value) {
+      setFlipping(true);
+      const timer1 = setTimeout(() => {
+        setDisplay(newVal);
+      }, 200); // Change digit halfway through the 400ms animation
+      const timer2 = setTimeout(() => {
+        setFlipping(false);
+      }, 400); // Finish animation
+      prevRef.current = value;
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    }
+  }, [value]);
+
+  return (
+    <div className="countdown__item">
+      <div className={`countdown__flip${flipping ? ' countdown__flip--active' : ''}`}>
+        <span className="countdown__value">{display}</span>
+      </div>
+      <span className="countdown__label">{label}</span>
+    </div>
+  );
 }
 
 export default function Countdown() {
@@ -31,10 +64,7 @@ export default function Countdown() {
   return (
     <div className="countdown">
       {items.map(({ label, value }) => (
-        <div key={label} className="countdown__item">
-          <span className="countdown__value">{String(value).padStart(2, '0')}</span>
-          <span className="countdown__label">{label}</span>
-        </div>
+        <FlipDigit key={label} value={value} label={label} />
       ))}
     </div>
   );

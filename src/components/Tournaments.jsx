@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { HiChevronDown, HiChevronUp, HiExternalLink, HiCode, HiCube, HiAcademicCap, HiFire } from 'react-icons/hi';
+import { HiChevronDown, HiExternalLink, HiCode, HiCube, HiAcademicCap, HiFire } from 'react-icons/hi';
 
 const tournaments = [
   {
-    id: 'hackabot', icon: HiCode, color: '#00bcd4',
+    id: 'hackabot', icon: HiCode, color: '#00bcd4', gradient: 'linear-gradient(135deg, #00bcd4, #4dd0e1)',
     name: 'Hackabot',
     desc: 'Competencia de robótica libre donde los participantes programan y construyen robots para resolver desafíos.',
     rules: [
@@ -15,7 +15,7 @@ const tournaments = [
     ],
   },
   {
-    id: 'wedo', icon: HiAcademicCap, color: '#ffb300',
+    id: 'wedo', icon: HiAcademicCap, color: '#ffb300', gradient: 'linear-gradient(135deg, #ffb300, #ffd54f)',
     name: 'WeDo',
     desc: 'Categoría para los más jóvenes, usando kits LEGO WeDo para construir y programar robots.',
     rules: [
@@ -27,7 +27,7 @@ const tournaments = [
     ],
   },
   {
-    id: 'sumobot', icon: HiCube, color: '#00bcd4',
+    id: 'sumobot', icon: HiCube, color: '#00bcd4', gradient: 'linear-gradient(135deg, #00bcd4, #26c6da)',
     name: 'Sumo Bot',
     desc: 'Dos robots se enfrentan en un ring. El primero que empuje al otro fuera del círculo gana.',
     rules: [
@@ -39,7 +39,7 @@ const tournaments = [
     ],
   },
   {
-    id: 'battlebot', icon: HiFire, color: '#ffb300',
+    id: 'battlebot', icon: HiFire, color: '#ffb300', gradient: 'linear-gradient(135deg, #ffb300, #ff8f00)',
     name: 'Battlebot',
     desc: 'Combates robot vs robot en un ring cerrado. Gana el que inhabilite a su oponente.',
     rules: [
@@ -83,11 +83,12 @@ export default function Tournaments() {
               <div
                 key={t.id}
                 className={`tournament-card${isOpen ? ' tournament-card--open' : ''}`}
-                style={{ '--card-accent': t.color, animationDelay: `${i * 0.1}s` }}
+                style={{ '--card-accent': t.color, '--card-gradient': t.gradient, animationDelay: `${i * 0.1}s` }}
               >
+                <div className="tournament-card__badge">Inscripciones abiertas</div>
                 <div className="tournament-card__header" onClick={() => setOpenId(isOpen ? null : t.id)}>
                   <div className="tournament-card__icon">
-                    <Icon size={28} color={t.color} />
+                    <Icon size={28} />
                   </div>
                   <div className="tournament-card__info">
                     <h3 className="tournament-card__name">{t.name}</h3>
@@ -97,11 +98,11 @@ export default function Tournaments() {
                     className="tournament-card__toggle"
                     aria-label={isOpen ? 'Cerrar reglas' : 'Ver reglas'}
                   >
-                    {isOpen ? <HiChevronUp size={22} /> : <HiChevronDown size={22} />}
+                    <HiChevronDown size={22} />
                   </button>
                 </div>
 
-                {isOpen && (
+                <div className={`tournament-card__rules-wrap${isOpen ? ' tournament-card__rules-wrap--open' : ''}`}>
                   <div className="tournament-card__rules">
                     <h4>Reglas</h4>
                     <ul>
@@ -120,7 +121,7 @@ export default function Tournaments() {
                       Inscribirme <HiExternalLink size={18} />
                     </a>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}

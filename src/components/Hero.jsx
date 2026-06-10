@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Countdown from './Countdown';
+import ParticleCanvas from './ParticleCanvas';
 import { HiArrowRight, HiChevronDown } from 'react-icons/hi';
 
 export default function Hero() {
@@ -9,14 +10,7 @@ export default function Hero() {
   return (
     <section id="inicio" className={`hero${loaded ? ' hero--loaded' : ''}`}>
       <div className="hero__bg" />
-
-      <div className="hero__shapes">
-        <div className="hero__shape hero__shape--1" />
-        <div className="hero__shape hero__shape--2" />
-        <div className="hero__shape hero__shape--3" />
-        <div className="hero__shape hero__shape--4" />
-        <div className="hero__shape hero__shape--5" />
-      </div>
+      <ParticleCanvas />
 
       <div className="hero__grid" />
 
@@ -39,6 +33,7 @@ export default function Hero() {
         <Countdown />
 
         <a href="#torneos" className="btn btn-primary hero__cta">
+          <span className="btn__shimmer" />
           Inscríbete ahora <HiArrowRight size={20} />
         </a>
       </div>

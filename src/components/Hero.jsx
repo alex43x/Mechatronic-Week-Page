@@ -22,12 +22,14 @@ export default function Hero() {
         <div className="hero__text">
           <span className="hero__badge">4, 6 y 8 de agosto 2026</span>
           <h1 className="hero__title">
-            CDR <span className="hero__title--highlight">Mechatronic</span> Week
+            MECATRONIC <span className="hero__title--highlight">WEEK</span>
+            <br />
+            <span style={{ fontSize: '0.6em', opacity: 0.9, display: 'inline-block', marginTop: '10px' }}>FP-UNA 2026</span>
           </h1>
           <p className="hero__subtitle">
-            Torneos de robótica &middot; Charlas &middot; Presentación de proyectos
+            Aprendé &middot; Creá &middot; Competí
           </p>
-          <p className="hero__location">Facultad Politécnica &middot; Universidad Nacional de Asunción</p>
+          <p className="hero__location">Facultad Politécnica &middot; UNA</p>
         </div>
 
         <Countdown />

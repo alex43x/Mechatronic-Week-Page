@@ -5,7 +5,6 @@ import SectionWave from './components/SectionWave';
 import About from './components/About';
 import Tournaments from './components/Tournaments';
 import Talks from './components/Talks';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import GlobalUI from './components/GlobalUI';
 import './App.css';
@@ -24,8 +23,6 @@ function App() {
         <Tournaments />
         <SectionWave from="var(--white)" to="var(--light)" />
         <Talks />
-        <SectionWave from="var(--light)" to="var(--white)" />
-        <Contact />
       </main>
       <Footer />
     </>

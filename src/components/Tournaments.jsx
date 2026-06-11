@@ -1,34 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
-import { HiChevronDown, HiExternalLink, HiCode, HiCube, HiAcademicCap, HiFire } from 'react-icons/hi';
+import { HiCode, HiCube, HiFire, HiCheckCircle } from 'react-icons/hi';
 
 const tournaments = [
   {
     id: 'hackabot', icon: HiCode, color: '#00bcd4', gradient: 'linear-gradient(135deg, #00bcd4, #4dd0e1)',
     name: 'Hackabot',
-    desc: 'Competencia de robótica libre donde los participantes programan y construyen robots para resolver desafíos.',
+    desc: 'Creá una solución real con robótica.',
     rules: [
-      'Cada equipo debe tener entre 2 y 4 integrantes.',
-      'Los robots deben ser autónomos (sin control remoto).',
-      'Tiempo límite por ronda: 3 minutos.',
-      'No se permite interferir con los robots del oponente.',
-      'El incumplimiento de las normas resulta en descalificación.',
-    ],
-  },
-  {
-    id: 'wedo', icon: HiAcademicCap, color: '#ffb300', gradient: 'linear-gradient(135deg, #ffb300, #ffd54f)',
-    name: 'WeDo',
-    desc: 'Categoría para los más jóvenes, usando kits LEGO WeDo para construir y programar robots.',
-    rules: [
-      'Participantes de 7 a 12 años.',
-      'Se utiliza el kit LEGO WeDo 2.0.',
-      'Los robots deben completar un recorrido establecido.',
-      'Se permite la ayuda de un mentor por equipo.',
-      'Gana el que complete el recorrido en menor tiempo.',
+      'Equipos de 3 a 5 integrantes.',
+      'Desarrollo durante la semana.',
+      'Mentorías técnicas.',
+      'Presentación final y premiación.',
     ],
   },
   {
     id: 'sumobot', icon: HiCube, color: '#00bcd4', gradient: 'linear-gradient(135deg, #00bcd4, #26c6da)',
-    name: 'Sumo Bot',
+    name: 'Sumo Bot Cup',
     desc: 'Dos robots se enfrentan en un ring. El primero que empuje al otro fuera del círculo gana.',
     rules: [
       'Peso máximo del robot: 3 kg.',
@@ -40,7 +27,7 @@ const tournaments = [
   },
   {
     id: 'battlebot', icon: HiFire, color: '#ffb300', gradient: 'linear-gradient(135deg, #ffb300, #ff8f00)',
-    name: 'Battlebot',
+    name: 'Battlebot Cup',
     desc: 'Combates robot vs robot en un ring cerrado. Gana el que inhabilite a su oponente.',
     rules: [
       'Peso máximo: 6 kg.',
@@ -53,7 +40,6 @@ const tournaments = [
 ];
 
 export default function Tournaments() {
-  const [openId, setOpenId] = useState(null);
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -75,58 +61,45 @@ export default function Tournaments() {
           Elegí tu categoría y participá en la competencia
         </p>
 
-        <div className="tournaments__grid">
+        <div className="tournaments__list">
           {tournaments.map((t, i) => {
-            const isOpen = openId === t.id;
             const Icon = t.icon;
+            const isReversed = i % 2 !== 0;
             return (
-              <div
+              <article
                 key={t.id}
-                className={`tournament-card${isOpen ? ' tournament-card--open' : ''}`}
-                style={{ '--card-accent': t.color, '--card-gradient': t.gradient, animationDelay: `${i * 0.15}s` }}
+                className={`tournament-row ${isReversed ? 'tournament-row--reversed' : ''}`}
+                style={{ '--accent': t.color, animationDelay: `${i * 0.2}s` }}
               >
-                <div className="tournament-card__bg-pattern" />
-                <div className="tournament-card__scanline" />
-                <div className="tournament-card__badge">Inscripciones abiertas</div>
-                
-                <div className="tournament-card__header" onClick={() => setOpenId(isOpen ? null : t.id)}>
-                  <div className="tournament-card__icon">
-                    <Icon size={32} />
+                <div className="tournament-row__visual" style={{ background: t.gradient }}>
+                  <div className="tournament-row__icon-wrap">
+                    <Icon size={80} color="var(--dark)" />
                   </div>
-                  <div className="tournament-card__info">
-                    <h3 className="tournament-card__name">{t.name}</h3>
-                    <p className="tournament-card__desc">{t.desc}</p>
-                  </div>
-                  <button
-                    className="tournament-card__toggle"
-                    aria-label={isOpen ? 'Cerrar reglas' : 'Ver reglas'}
-                  >
-                    <HiChevronDown size={24} />
-                  </button>
+                  <div className="tournament-row__bg-pattern" />
                 </div>
-
-                <div className={`tournament-card__rules-wrap${isOpen ? ' tournament-card__rules-wrap--open' : ''}`}>
-                  <div className="tournament-card__rules">
+                
+                <div className="tournament-row__content">
+                  <h3 className="tournament-row__title">{t.name}</h3>
+                  <p className="tournament-row__desc">{t.desc}</p>
+                  
+                  <div className="tournament-row__rules">
                     <h4>Reglamento Oficial</h4>
                     <ul>
                       {t.rules.map((r, idx) => (
-                        <li key={idx}>{r}</li>
+                        <li key={idx}>
+                          <HiCheckCircle size={20} className="rule-icon" style={{ color: t.color }} />
+                          <span>{r}</span>
+                        </li>
                       ))}
                     </ul>
-                    <a
-                      href="#!"
-                      className="btn btn-primary tournament-card__btn"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        alert('Próximamente link de inscripción');
-                      }}
-                    >
-                      <span className="btn__shimmer" />
-                      Inscribirme <HiExternalLink size={18} />
-                    </a>
                   </div>
+                  
+                  <button className="btn btn-primary tournament-row__btn" style={{ background: t.gradient }}>
+                    <span className="btn__shimmer" />
+                    Inscribirse a {t.name}
+                  </button>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>

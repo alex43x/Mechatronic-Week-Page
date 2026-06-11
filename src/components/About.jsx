@@ -36,10 +36,10 @@ function Counter({ end, suffix }) {
 }
 
 const stats = [
-  { id: 'torneos', icon: HiChip, end: 4, suffix: '', label: 'Torneos', desc: 'Hackabot, WeDo, Sumo Bot y Battlebot' },
   { id: 'dias', icon: HiCalendar, end: 3, suffix: '', label: 'Días de Evento', desc: '4, 6 y 8 de agosto' },
-  { id: 'participantes', icon: HiUserGroup, end: 100, suffix: '+', label: 'Participantes', desc: 'De todo el país compitiendo' },
-  { id: 'charlas', icon: HiLightBulb, end: 6, suffix: '', label: 'Charlas', desc: 'Expertos en robótica e IA' },
+  { id: 'torneos', icon: HiChip, end: 3, suffix: '', label: 'Torneos', desc: 'Hackabot, Sumo Bot y Battlebot' },
+  { id: 'talleres', icon: HiLightBulb, end: 4, suffix: '', label: 'Talleres', desc: 'De electrónica a control' },
+  { id: 'participantes', icon: HiUserGroup, end: 100, suffix: '+', label: 'Estudiantes', desc: 'Construyendo el futuro, HOY' },
 ];
 
 export default function About() {
@@ -83,8 +83,7 @@ export default function About() {
       <div className="container">
         <h2 className="section-title">Sobre el evento</h2>
         <p className="section-subtitle">
-          Del 4 al 8 de agosto, la CDR Mechatronic Week reúne a los mejores talentos en robótica
-          para competir, aprender y compartir proyectos innovadores.
+          Construimos el futuro, HOY. Aprendé, creá y competí en la semana más tecnológica del año.
         </p>
 
         <div className="about__bento">

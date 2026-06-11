@@ -24,10 +24,10 @@ function FlipDigit({ value, label }) {
       setFlipping(true);
       const timer1 = setTimeout(() => {
         setDisplay(newVal);
-      }, 200); // Change digit halfway through the 400ms animation
+      }, 150); // Change digit halfway through
       const timer2 = setTimeout(() => {
         setFlipping(false);
-      }, 400); // Finish animation
+      }, 300); // Finish animation
       prevRef.current = value;
       return () => {
         clearTimeout(timer1);

@@ -67,23 +67,26 @@ export default function Talks() {
             <div
               key={i}
               className={`talks__item${t.break ? ' talks__item--break' : ''}${i === 0 ? ' talks__item--next' : ''}`}
-              style={{ animationDelay: `${i * 0.1}s` }}
+              style={{ animationDelay: `${i * 0.15}s` }}
             >
               <div className="talks__dot">
-                {t.break ? <HiSun size={14} /> : <div className="talks__dot-inner" />}
+                {t.break ? <HiSun size={16} /> : <div className="talks__dot-inner" />}
               </div>
-              <div className="talks__card">
-                <div className="talks__card-top">
-                  <span className="talks__time">
-                    <HiClock size={14} /> {t.time} &ndash; {t.end}
-                  </span>
-                  {!t.break && (
-                    <span className="talks__speaker">
-                      <HiUser size={14} /> {t.speaker}
+              <div className="talks__card-wrap">
+                <div className="talks__card-glow" />
+                <div className="talks__card">
+                  <div className="talks__card-top">
+                    <span className="talks__time">
+                      <HiClock size={16} /> {t.time} &ndash; {t.end}
                     </span>
-                  )}
+                    {!t.break && (
+                      <span className="talks__speaker">
+                        <HiUser size={16} /> {t.speaker}
+                      </span>
+                    )}
+                  </div>
+                  <h4 className="talks__card-title">{t.title}</h4>
                 </div>
-                <h4 className="talks__card-title">{t.title}</h4>
               </div>
             </div>
           ))}

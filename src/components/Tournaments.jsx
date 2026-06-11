@@ -83,12 +83,15 @@ export default function Tournaments() {
               <div
                 key={t.id}
                 className={`tournament-card${isOpen ? ' tournament-card--open' : ''}`}
-                style={{ '--card-accent': t.color, '--card-gradient': t.gradient, animationDelay: `${i * 0.1}s` }}
+                style={{ '--card-accent': t.color, '--card-gradient': t.gradient, animationDelay: `${i * 0.15}s` }}
               >
+                <div className="tournament-card__bg-pattern" />
+                <div className="tournament-card__scanline" />
                 <div className="tournament-card__badge">Inscripciones abiertas</div>
+                
                 <div className="tournament-card__header" onClick={() => setOpenId(isOpen ? null : t.id)}>
                   <div className="tournament-card__icon">
-                    <Icon size={28} />
+                    <Icon size={32} />
                   </div>
                   <div className="tournament-card__info">
                     <h3 className="tournament-card__name">{t.name}</h3>
@@ -98,26 +101,27 @@ export default function Tournaments() {
                     className="tournament-card__toggle"
                     aria-label={isOpen ? 'Cerrar reglas' : 'Ver reglas'}
                   >
-                    <HiChevronDown size={22} />
+                    <HiChevronDown size={24} />
                   </button>
                 </div>
 
                 <div className={`tournament-card__rules-wrap${isOpen ? ' tournament-card__rules-wrap--open' : ''}`}>
                   <div className="tournament-card__rules">
-                    <h4>Reglas</h4>
+                    <h4>Reglamento Oficial</h4>
                     <ul>
-                      {t.rules.map((r, i) => (
-                        <li key={i}>{r}</li>
+                      {t.rules.map((r, idx) => (
+                        <li key={idx}>{r}</li>
                       ))}
                     </ul>
                     <a
                       href="#!"
-                      className="btn btn-amber tournament-card__btn"
+                      className="btn btn-primary tournament-card__btn"
                       onClick={(e) => {
                         e.preventDefault();
                         alert('Próximamente link de inscripción');
                       }}
                     >
+                      <span className="btn__shimmer" />
                       Inscribirme <HiExternalLink size={18} />
                     </a>
                   </div>

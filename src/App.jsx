@@ -7,11 +7,13 @@ import Tournaments from './components/Tournaments';
 import Talks from './components/Talks';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import GlobalUI from './components/GlobalUI';
 import './App.css';
 
 function App() {
   return (
     <>
+      <GlobalUI />
       <Preloader />
       <Navbar />
       <main>

@@ -36,10 +36,10 @@ function Counter({ end, suffix }) {
 }
 
 const stats = [
-  { icon: HiChip, end: 4, suffix: '', label: 'Torneos', desc: 'Hackabot, WeDo, Sumo Bot y Battlebot' },
-  { icon: HiCalendar, end: 3, suffix: '', label: 'Días', desc: '4, 6 y 8 de agosto' },
-  { icon: HiUserGroup, end: 100, suffix: '+', label: 'Participantes', desc: 'De todo el país' },
-  { icon: HiLightBulb, end: 6, suffix: '', label: 'Charlas', desc: 'Expertos en robótica' },
+  { id: 'torneos', icon: HiChip, end: 4, suffix: '', label: 'Torneos', desc: 'Hackabot, WeDo, Sumo Bot y Battlebot' },
+  { id: 'dias', icon: HiCalendar, end: 3, suffix: '', label: 'Días de Evento', desc: '4, 6 y 8 de agosto' },
+  { id: 'participantes', icon: HiUserGroup, end: 100, suffix: '+', label: 'Participantes', desc: 'De todo el país compitiendo' },
+  { id: 'charlas', icon: HiLightBulb, end: 6, suffix: '', label: 'Charlas', desc: 'Expertos en robótica e IA' },
 ];
 
 export default function About() {
@@ -56,6 +56,28 @@ export default function About() {
     return () => obs.disconnect();
   }, []);
 
+  const handleMouseMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Tilt effect calculation
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
+    
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+  };
+
+  const handleMouseLeave = (e) => {
+    const card = e.currentTarget;
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+  };
+
   return (
     <section id="sobre" className={`section about${visible ? ' about--visible' : ''}`} ref={sectionRef}>
       <div className="container">
@@ -65,17 +87,28 @@ export default function About() {
           para competir, aprender y compartir proyectos innovadores.
         </p>
 
-        <div className="about__grid">
-          {stats.map(({ icon: Icon, end, suffix, label, desc }, i) => (
-            <div key={label} className="about__card" style={{ animationDelay: `${i * 0.12}s` }}>
-              <div className="about__card-icon">
-                <Icon size={32} />
+        <div className="about__bento">
+          {stats.map(({ id, icon: Icon, end, suffix, label, desc }, i) => (
+            <div 
+              key={label} 
+              className={`about__bento-card about__bento-card--${id}`} 
+              style={{ animationDelay: `${i * 0.15}s` }}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className="about__card-glow" />
+              <div className="about__card-content">
+                <div className="about__card-icon">
+                  <Icon size={32} />
+                </div>
+                <div className="about__card-info">
+                  <div className="about__card-number">
+                    <Counter end={end} suffix={suffix} />
+                  </div>
+                  <h3 className="about__card-label">{label}</h3>
+                  <p className="about__card-desc">{desc}</p>
+                </div>
               </div>
-              <div className="about__card-number">
-                <Counter end={end} suffix={suffix} />
-              </div>
-              <h3 className="about__card-label">{label}</h3>
-              <p className="about__card-desc">{desc}</p>
             </div>
           ))}
         </div>

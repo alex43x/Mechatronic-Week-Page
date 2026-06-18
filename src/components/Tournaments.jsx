@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { HiCode, HiCube, HiFire, HiCheckCircle } from 'react-icons/hi';
+import { HiCode, HiCube, HiFire, HiCheckCircle, HiDownload } from 'react-icons/hi';
 
 const tournaments = [
   {
     id: 'hackabot', icon: HiCode, color: '#00bcd4', gradient: 'linear-gradient(135deg, #00bcd4, #4dd0e1)',
     name: 'HACKABOT 2026',
     desc: 'Competencia de innovación tecnológica y robótica en la que los participantes deberán diseñar, construir y presentar una solución robótica para resolver un problema de la vida cotidiana.',
+    pdf: '/REGLAMENTO OFICIAL HACKABOT.pdf',
     rules: [
       'Estudiantes desde los 14 años.',
       'Equipos de 3 a 5 integrantes.',
@@ -17,6 +18,7 @@ const tournaments = [
     id: 'sumobot', icon: HiCube, color: '#00bcd4', gradient: 'linear-gradient(135deg, #00bcd4, #26c6da)',
     name: 'CDR SUMO BOT CUP',
     desc: 'Competencia de robots autónomos inspirada en el sumo japonés. Mini Sumo Autónomo 500 g.',
+    pdf: '/Reglamento CDR Sumobot.pdf',
     rules: [
       'Desde los 15 años.',
       'Participación individual o por equipos (hasta 5 integrantes).',
@@ -28,6 +30,7 @@ const tournaments = [
     id: 'battlebot', icon: HiFire, color: '#ffb300', gradient: 'linear-gradient(135deg, #ffb300, #ff8f00)',
     name: 'CDR BATTLEBOT CUP',
     desc: 'Competencia de combate de robots de control remoto. Categoría Antweight 500 g.',
+    pdf: '/Reglamento CDR Battlebot.pdf',
     rules: [
       'Mayores de 18 años.',
       'Participación individual o por equipos (hasta 5 integrantes).',
@@ -92,10 +95,16 @@ export default function Tournaments() {
                     </ul>
                   </div>
                   
-                  <button className="btn btn-primary tournament-row__btn" style={{ background: t.gradient }}>
-                    <span className="btn__shimmer" />
-                    Inscribirse a {t.name}
-                  </button>
+                  <div className="tournament-row__actions" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
+                    <button className="btn btn-primary tournament-row__btn" style={{ background: t.gradient, marginTop: 0 }}>
+                      <span className="btn__shimmer" />
+                      Inscribirse a {t.name}
+                    </button>
+                    <a href={t.pdf} download className="btn btn-outline tournament-row__btn" style={{ marginTop: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'center' }}>
+                      <HiDownload size={20} />
+                      Descargar Reglamento
+                    </a>
+                  </div>
                 </div>
               </article>
             );

@@ -682,6 +682,17 @@
   box-shadow: 0 10px 30px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
+.tournament-row__btn.btn-outline {
+  color: var(--white);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.tournament-row__btn.btn-outline:hover {
+  background: var(--white);
+  color: var(--dark);
+  border-color: var(--white);
+}
+
 @media (max-width: 900px) {
   .tournament-row, .tournament-row--reversed {
     flex-direction: column;

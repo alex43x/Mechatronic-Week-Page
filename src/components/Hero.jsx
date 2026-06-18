@@ -22,7 +22,7 @@ export default function Hero() {
         <div className="hero__text">
           <span className="hero__badge">4, 6 y 8 de agosto 2026</span>
           <h1 className="hero__title">
-            MECATRONIC <span className="hero__title--highlight">WEEK</span>
+            MECHATRONIC <span className="hero__title--highlight">WEEK</span>
             <br />
             <span style={{ fontSize: '0.6em', opacity: 0.9, display: 'inline-block', marginTop: '10px' }}>FP-UNA 2026</span>
           </h1>

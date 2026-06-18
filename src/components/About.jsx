@@ -112,7 +112,7 @@ export default function About() {
 
           <div className="about__text-content">
             <p className="section-subtitle" style={{ textAlign: 'left', marginInline: '0', marginBottom: '2rem' }}>
-              La <strong>Mecatronic Week 2026</strong> es un evento académico y tecnológico orientado a fomentar el aprendizaje práctico, la innovación, el trabajo en equipo y la aplicación de conocimientos de robótica, electrónica, programación y diseño mecánico.
+              La <strong>Mechatronic Week 2026</strong> es un evento académico y tecnológico orientado a fomentar el aprendizaje práctico, la innovación, el trabajo en equipo y la aplicación de conocimientos de robótica, electrónica, programación y diseño mecánico.
             </p>
             <div className="about__general-objective" style={{ color: 'var(--text-muted)' }}>
               <p style={{ marginBottom: '1rem' }}>

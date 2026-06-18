@@ -33,7 +33,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer__bottom">
-        &copy; {year} MECATRONIC WEEK FP-UNA
+        &copy; {year} MECHATRONIC WEEK FP-UNA
       </div>
     </footer>
   );

@@ -19,10 +19,10 @@ export default function Footer() {
         <div className="footer__social">
           <span className="footer__label">SEGUINOS EN NUESTRAS REDES</span>
           <div className="footer__social-links">
-            <a href="https://instagram.com/roboticafpuna" target="_blank" rel="noopener noreferrer" className="footer__link">
-              <FaInstagram size={20} /> @roboticafpuna
+            <a href="https://www.instagram.com/cdrpy?igsh=MTBwcGk2ejR5enRz" target="_blank" rel="noopener noreferrer" className="footer__link">
+              <FaInstagram size={20} /> @cdrpy
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer__link">
+            <a href="https://www.facebook.com/share/18muKwvHYm/" target="_blank" rel="noopener noreferrer" className="footer__link">
               <FaFacebook size={20} /> Club de Robótica FP-UNA
             </a>
           </div>

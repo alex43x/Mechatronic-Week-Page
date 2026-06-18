@@ -1122,12 +1122,14 @@
 
 /* ===== FOOTER ===== */
 .footer {
-  background: var(--dark-lighter);
+  background: rgba(10, 14, 20, 0.95);
+  backdrop-filter: blur(20px);
   color: rgba(255, 255, 255, 0.6);
   padding: 60px 0 0;
   position: relative;
   overflow: hidden;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(0, 188, 212, 0.2);
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3);
 }
 
 .footer__inner {
@@ -1226,7 +1228,8 @@
 }
 
 .footer__bottom {
-  background: var(--dark);
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding: 20px 0;
   text-align: center;
   font-size: 0.85rem;

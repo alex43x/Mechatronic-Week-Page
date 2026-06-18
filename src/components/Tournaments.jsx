@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { HiCode, HiCube, HiFire, HiCheckCircle, HiDownload } from 'react-icons/hi';
-
+import { HiCode, HiCheckCircle, HiDownload } from 'react-icons/hi';
+import { GiRobotGolem, GiCircularSaw } from 'react-icons/gi';
 const tournaments = [
   {
     id: 'hackabot', icon: HiCode, color: '#00bcd4', gradient: 'linear-gradient(135deg, #00bcd4, #4dd0e1)',
     name: 'HACKABOT 2026',
+    formUrl: 'https://forms.gle/e5AEMwstXtFECg1q7',
     desc: 'Competencia de innovación tecnológica y robótica en la que los participantes deberán diseñar, construir y presentar una solución robótica para resolver un problema de la vida cotidiana.',
     pdf: '/REGLAMENTO OFICIAL HACKABOT.pdf',
     rules: [
@@ -15,8 +16,9 @@ const tournaments = [
     ],
   },
   {
-    id: 'sumobot', icon: HiCube, color: '#00bcd4', gradient: 'linear-gradient(135deg, #00bcd4, #26c6da)',
+    id: 'sumobot', icon: GiRobotGolem, color: '#00bcd4', gradient: 'linear-gradient(135deg, #00bcd4, #26c6da)',
     name: 'CDR SUMO BOT CUP',
+    formUrl: 'https://forms.gle/9N7XKAtrYL2gLJ4n8',
     desc: 'Competencia de robots autónomos inspirada en el sumo japonés. Mini Sumo Autónomo 500 g.',
     pdf: '/Reglamento CDR Sumobot.pdf',
     rules: [
@@ -27,8 +29,9 @@ const tournaments = [
     ],
   },
   {
-    id: 'battlebot', icon: HiFire, color: '#ffb300', gradient: 'linear-gradient(135deg, #ffb300, #ff8f00)',
+    id: 'battlebot', icon: GiCircularSaw, color: '#ffb300', gradient: 'linear-gradient(135deg, #ffb300, #ff8f00)',
     name: 'CDR BATTLEBOT CUP',
+    formUrl: 'https://forms.gle/JBiQPAyuCG2x2zS89',
     desc: 'Competencia de combate de robots de control remoto. Categoría Antweight 500 g.',
     pdf: '/Reglamento CDR Battlebot.pdf',
     rules: [
@@ -96,10 +99,10 @@ export default function Tournaments() {
                   </div>
                   
                   <div className="tournament-row__actions" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
-                    <button className="btn btn-primary tournament-row__btn" style={{ background: t.gradient, marginTop: 0 }}>
+                    <a href={t.formUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary tournament-row__btn" style={{ background: t.gradient, marginTop: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <span className="btn__shimmer" />
                       Inscribirse a {t.name}
-                    </button>
+                    </a>
                     <a href={t.pdf} download className="btn btn-outline tournament-row__btn" style={{ marginTop: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'center' }}>
                       <HiDownload size={20} />
                       Descargar Reglamento

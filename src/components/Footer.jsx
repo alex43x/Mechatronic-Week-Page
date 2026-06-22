@@ -3,7 +3,7 @@ import { FaInstagram, FaFacebook } from 'react-icons/fa';
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="footer">
+    <footer id="contacto" className="footer">
       <div className="container footer__inner">
         <div className="footer__organizer">
           <span className="footer__label">ORGANIZA:</span>

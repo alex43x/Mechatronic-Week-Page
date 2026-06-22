@@ -23,7 +23,7 @@ export default function Workshops() {
   }, []);
 
   return (
-    <section id="talleres" className={`section workshops${visible ? ' workshops--visible' : ''}`} ref={sectionRef}>
+    <section id="charlas" className={`section workshops${visible ? ' workshops--visible' : ''}`} ref={sectionRef}>
       <div className="container">
         <h2 className="section-title">Talleres de Robótica</h2>
         <p className="section-subtitle">
